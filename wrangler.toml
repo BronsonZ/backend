@@ -1,0 +1,13 @@
+name = "worker"
+type = "webpack"
+
+account_id = "ae3a51c76d7c22610a2d873b1ef68fc9"
+workers_dev = true
+route = ""
+zone_id = ""
+compatibility_date = "2021-11-02"
+webpack_config = "webpack.config.js"
+
+kv_namespaces = [ 
+         { binding = "FILES", preview_id = "eaa86580f0b244339cd451266cf384cf", id = "2c3aa33a2d254addaf08aff918955e88" }
+]
