@@ -3,7 +3,8 @@
 A template for kick starting a Cloudflare worker project.
 
 [`index.js`](https://github.com/cloudflare/worker-template/blob/master/index.js) is the content of the Workers script.
-['router.js](https://github.com/joelnet/cloudflare-worker-website/blob/master/src/lib/router.js) is the router for the url requests.
+
+[`router.js`](https://github.com/joelnet/cloudflare-worker-website/blob/master/src/lib/router.js) is the router for the url requests.
 
 #### Wrangler
 
