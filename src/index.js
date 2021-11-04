@@ -6,7 +6,9 @@ addEventListener('fetch', event => {
 
 
 const filePost = async request => {
-  const { key, contents } = await request.json()
+  const contents = await request.json();
+  const key = contents.title;
+  //const { key, contents } = await request.json()
 
   if(key == "" || key == null){
     return new Response("ERROR: NO KEY VALUE")
