@@ -8,7 +8,6 @@ addEventListener('fetch', event => {
 const filePost = async request => {
   const contents = await request.json();
   const key = contents.title;
-  //const { key, contents } = await request.json()
 
   if(key == "" || key == null){
     return new Response("ERROR: NO KEY VALUE")
@@ -41,7 +40,6 @@ const fileList = async () => {
   const body = JSON.stringify(contentsArray);
   const headers = { 'Content-type': 'application/json' }
   return new Response(body, { headers })
-  //return new Response(JSON.stringify(contentsArray));
 }
 
 
