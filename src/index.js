@@ -19,6 +19,12 @@ const filePost = async request => {
   return new Response("SUCCESS")
 }
 
+const fileDelete = async request => {
+  const { title } = await request.json();
+  await FILES.delete(title);
+  return new Response("SUCCESS");
+}
+
 
 const fileList = async () => {
   const files = await FILES.list()
@@ -58,6 +64,10 @@ async function handleRequest(request) {
   router.get(
     '/post',
     () => fileList(),
+  )
+  router.delete(
+    '/post',
+    () => fileDelete(request),
   )
   router.all(
     () =>
