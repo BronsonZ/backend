@@ -16,13 +16,21 @@ const filePost = async request => {
     return new Response("ERROR: CONTENTS EMPTY")
   }
   await FILES.put(key, JSON.stringify(contents))
-  return new Response("SUCCESS")
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Content-type': 'application/json'
+  }
+  return new Response("SUCCESS", { headers })
 }
 
 const fileDelete = async request => {
   const { title } = await request.json();
   await FILES.delete(title);
-  return new Response("SUCCESS");
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Content-type': 'application/json'
+  }
+  return new Response("SUCCESS", { headers });
 }
 
 
@@ -44,8 +52,11 @@ const fileList = async () => {
   }
 
   const body = JSON.stringify(contentsArray);
-  const headers = { 'Content-type': 'application/json' }
-  return new Response(body, { headers })
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Content-type': 'application/json'
+  }
+  return new Response(body, { headers, status: 200 })
 }
 
 
@@ -72,7 +83,10 @@ async function handleRequest(request) {
   router.all(
     () =>
       new Response("404 Not Found", {
-        headers: { 'content-type': 'text/plain' },
+        headers: {
+          'Access-Control-Allow-Origin': '*', 
+          'content-type': 'text/plain',
+        },
         status: 404,
       }),
   )
