@@ -1,97 +1,16 @@
-import Router from './router.js'
+import { Router } from 'itty-router'
+import FileDelete from './lib/fileDelete'
+import FileList from './lib/fileList'
+import FilePost from './lib/filePost'
+import NotFound from './lib/notFound'
+
+const router = Router()
+
+router.get('/post', () => FileList())
+router.post('/post', async request => FilePost(request))
+router.delete('/post', async request => FileDelete(request))
+router.all('*', () => NotFound())
 
 addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
+  event.respondWith(router.handle(event.request))
 })
-
-
-const filePost = async request => {
-  const contents = await request.json();
-  const key = contents.title;
-
-  if(key == "" || key == null){
-    return new Response("ERROR: NO KEY VALUE")
-  }
-  if(contents == "" || contents == {} || contents == null){
-    return new Response("ERROR: CONTENTS EMPTY")
-  }
-  await FILES.put(key, JSON.stringify(contents))
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Content-type': 'application/json'
-  }
-  return new Response("SUCCESS", { headers })
-}
-
-const fileDelete = async request => {
-  const { title } = await request.json();
-  await FILES.delete(title);
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Content-type': 'application/json'
-  }
-  return new Response("SUCCESS", { headers });
-}
-
-
-const fileList = async () => {
-  const files = await FILES.list()
-
-  let contentsArray = new Array();
-
-  let content;
-
-  for (let i = 0; i < files.keys.length; i++) {
-
-    content = await FILES.get(files.keys[i].name, {type: "json"});
-
-    if (content != null) {
-      
-      contentsArray.push(content);
-    }
-  }
-
-  const body = JSON.stringify(contentsArray);
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Content-type': 'application/json'
-  }
-  return new Response(body, { headers, status: 200 })
-}
-
-
-/**
- * Respond with hello worker text
- * @param {Request} request
- */
-async function handleRequest(request) {
-
-  const router = new Router();
-
-  router.post(
-    '/post',
-    () => filePost(request),
-  )
-  router.get(
-    '/post',
-    () => fileList(),
-  )
-  router.delete(
-    '/post',
-    () => fileDelete(request),
-  )
-  router.all(
-    () =>
-      new Response("404 Not Found", {
-        headers: {
-          'Access-Control-Allow-Origin': '*', 
-          'content-type': 'text/plain',
-        },
-        status: 404,
-      }),
-  )
-
-  const response = await router.route(request)
-
-  return response
-}
