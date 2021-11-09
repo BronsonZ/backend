@@ -1,6 +1,8 @@
+import {v4 as uuidv4 } from 'uuid';
+
 const FilePost = async request => {
-  const data = await request.json()
-  const { title, name, contents } = data
+  let data = await request.json()
+  const { title, username, content } = data;
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'text/plain',
@@ -8,13 +10,14 @@ const FilePost = async request => {
   if (title == '' || title == null) {
     return new Response('ERROR: NO KEY/TITLE VALUE', { headers, status: 404 })
   }
-  if (name == '' || name == null) {
-    return new Response('ERROR: NO NAME VALUE', { headers, status: 404 })
+  if (username == '' || username == null) {
+    return new Response('ERROR: NO USERNAME VALUE', { headers, status: 404 })
   }
-  if (contents == '' || contents == null) {
-    return new Response('ERROR: NO CONTENTS VALUE', { headers, status: 404 })
+  if (content == '' || content == null) {
+    return new Response('ERROR: NO CONTENT VALUE', { headers, status: 404 })
   }
-  await FILES.put(title, JSON.stringify(data))
+  data.uuid = uuidv4();
+  await FILES.put(data.uuid, JSON.stringify(data))
   return new Response('SUCCESS', { headers, status: 200 })
 }
 

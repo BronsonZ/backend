@@ -1,6 +1,6 @@
 const FileDelete = async request => {
-  const { title } = await request.json()
-  await FILES.delete(title)
+  const { uuid } = await request.json()
+  await FILES.delete(uuid)
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'text/plain',
