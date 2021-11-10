@@ -1,7 +1,7 @@
 const FileList = async () => {
   const files = await FILES.list()
   let contentsArray = new Array()
-  let content;
+  let content
   for (let i = 0; i < files.keys.length; i++) {
     content = await FILES.get(files.keys[i].name, { type: 'json' })
 

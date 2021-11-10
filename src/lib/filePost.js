@@ -1,8 +1,8 @@
-import {v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 
 const FilePost = async request => {
   let data = await request.json()
-  const { title, username, content } = data;
+  const { title, username, content } = data
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'text/plain',
@@ -16,7 +16,7 @@ const FilePost = async request => {
   if (content == '' || content == null) {
     return new Response('ERROR: NO CONTENT VALUE', { headers, status: 404 })
   }
-  data.uuid = uuidv4();
+  data.uuid = uuidv4()
   await FILES.put(data.uuid, JSON.stringify(data))
   return new Response('SUCCESS', { headers, status: 200 })
 }
