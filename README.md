@@ -2,6 +2,10 @@
 
 This is my submission for the backend API section of the Cloudflare internship [`general assignment`](https://apply.cloudflareworkers.com/).
 
+Deployed version can be found [`here`](https://worker.bronsonz.workers.dev/) all requests must be sent to "/posts"
+
+Deployed frontend can be found [`here`](https://frontend-bx9.pages.dev/)
+
 ## Intro
 
 This worker is written in JavaScript and uses the Cloudflare worker KV as the database.
