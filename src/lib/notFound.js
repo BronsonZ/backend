@@ -1,3 +1,5 @@
+//404 Not Found response
+
 const NotFound = () => {
   return new Response('404 Not Found', {
     headers: {

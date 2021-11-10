@@ -1,3 +1,5 @@
+// Responds with a json object with all posts stored in the database
+
 const FileList = async () => {
   const files = await FILES.list()
   let contentsArray = new Array()

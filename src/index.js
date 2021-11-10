@@ -4,6 +4,8 @@ import FileList from './lib/fileList'
 import FilePost from './lib/filePost'
 import NotFound from './lib/notFound'
 
+// Handles all requests
+
 const router = Router()
 
 router.get('/post', () => FileList())
