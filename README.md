@@ -1,17 +1,16 @@
-# 👷 `worker-template` Hello World
+# `Worker API Backend for Cloudflare internship general assignment`
 
-A template for kick starting a Cloudflare worker project.
+This is my submission for the backend API section of the Cloudflare internship [`general assignment`](https://apply.cloudflareworkers.com/).
 
-[`index.js`](https://github.com/BronsonZ/worker/blob/master/src/index.js) is the content of the Workers script.
+This worker is written in JavaScript and uses the Cloudflare worker KV as the database.
 
-[`router.js`](https://github.com/BronsonZ/worker/blob/master/src/router.js) is the router for the url requests.
+This backend currently supports, GET, POST, and DELETE requests
 
-#### Wrangler
+The only dependencies are `itty-router` for routing the requests and `uuid` for generating the unique key values.
 
-To generate using [wrangler](https://github.com/cloudflare/wrangler)
+Each POST request must contain a `title`, `username`, and `content` value.
 
-```
-wrangler generate projectname https://github.com/cloudflare/worker-template
-```
+#### Author
+Bronson Zell
 
-Further documentation for Wrangler can be found [here](https://developers.cloudflare.com/workers/tooling/wrangler).
+bzell007@gmail.com
