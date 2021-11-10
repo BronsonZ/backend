@@ -8,9 +8,9 @@ import NotFound from './lib/notFound'
 
 const router = Router()
 
-router.get('/post', () => FileList())
-router.post('/post', async request => FilePost(request))
-router.delete('/post', async request => FileDelete(request))
+router.get('/posts', () => FileList())
+router.post('/posts', async request => FilePost(request))
+router.delete('/posts', async request => FileDelete(request))
 router.all('*', () => NotFound())
 
 addEventListener('fetch', event => {
